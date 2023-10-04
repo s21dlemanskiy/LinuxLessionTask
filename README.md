@@ -20,8 +20,12 @@ creator генерит необходимую файловую систему <b
 -p | --path - to set working directory to set departments file system <br>
 по дефолту генерит рандомные имена и берет департаменты из списка (откуда список? хз. Егор откуда то достал, а я позаимствовал)
 
-sender делает рассылку
-в теории он и есть основная задача задания
+sender делает рассылку (в теории он и есть основная задача задания)
+-h | --help - to see this list <br>
+-v | --verbose - to verbose print <br>
+-d | --departments - to set departments (they mast be separated with ', ') <br>
+-p | --path - to set working directory to set departments file system <br>
+
 
 
 # Quick start
