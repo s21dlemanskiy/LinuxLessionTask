@@ -1,7 +1,19 @@
 
-
+TOKEN="5662594280:AAGhEFWlCW5qClFAVCp5Q4lJ3E-VjEFaspM"
 
 VERBOSE=false
+
+DEPARTMENTS_MAP="{'Департамент статистики':{'chat_id':536160029, 'user_name':'user', 'password':'pass'}}"
+tmp_file_name="tmp_file.tar"
+
+
+function get_departments_map_data() {
+  echo "DN:$1" >&2
+  echo $(python3 -c "map=$DEPARTMENTS_MAP;result = map.get(\"$1\", {}).get(\"$2\", '');print(result)")
+}
+curl -X POST -v -F "chat_id=536160029" -H "Content-Type:multipart/form-data" -F document=@"/mnt/c/Users/koly36/Desktop/tmp/tmp_file.tar" "https://api.telegram.org/bot5662594280:AAGhEFWlCW5qClFAVCp5Q4lJ3E-VjEFaspM/sendDocument"
+
+echo $(get_departments_map_data "Департамент статистики" "chat_id")
 
 while getopts 'ndp:hv-:' OPTION; do
   if [ "$OPTION" = "-" ]; then   # long option: reformulate OPTION and OPTARG
@@ -9,7 +21,6 @@ while getopts 'ndp:hv-:' OPTION; do
    OPTARG="${OPTARG#OPTION}"   # extract long option argument (may be empty)
 #    OPTARG="${OPTARG#=}"      # if long option argument, remove assigning `=`
   fi
-  echo $OPTION
   case "$OPTION" in
     h | help)
       echo "-v | --verbose - to verbose print"
@@ -71,14 +82,26 @@ for departments_key in "${!departments[@]}"
 do
     department_name=${departments[departments_key]}
     dir_path="$WORKING_DIRECTORY/$department_name/"
+    chat_id=$(get_departments_map_data "$department_name" "chat_id")
+    user_name=$(get_departments_map_data "$department_name" "user_name")
+    password=$(get_departments_map_data "$department_name" "password")
     if [ -d "$dir_path" ];
     then
-      tar --directory="$dir_path"
+      tmp_file_path="$WORKING_DIRECTORY/$tmp_file_name"
+      tar -cvf "$tmp_file_path" "$dir_path"
+      echo $tmp_file_path
+      [ -n "$chat_id" ] && curl -v -F "chat_id=$chat_id" -F "text=user:${user_name}password:${password}" "https://api.telegram.org/bot${TOKEN}/sendMessage"
+      [ -n "$chat_id" ] && curl -v -F "chat_id=$chat_id" -F document=@"$tmp_file_path" "https://api.telegram.org/bot${TOKEN}/sendDocument"
       if [ $VERBOSE = true ];
       then
-          echo "fetch $dir_path directory"
+          [ -n "$chat_id" ] && echo "fetch $dir_path directory"
+          [ -z "$chat_id" ] && echo "empty chat_id for $department_name"
       fi
+      rm "$tmp_file_path"
     else
-      echo "directory $dir_path doesn't exist"
+      if [ $VERBOSE = true ];
+      then
+          echo "Directory $dir_path doesn't exist. It will be skiped"
+      fi
     fi
 done

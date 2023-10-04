@@ -1,5 +1,5 @@
 function get_certificate {
-  echo "This is an example of using a function"
+  #This is an example of using a function
   if [ -n "$1" ];
   then
     echo ""
@@ -10,7 +10,7 @@ function get_certificate {
     echo ""
     #there can be name
   fi
-  echo "data";
+  echo "date"
 }
 
 VERBOSE=false
@@ -22,13 +22,13 @@ while getopts 'ndp:hv-:' OPTION; do
    OPTARG="${OPTARG#OPTION}"   # extract long option argument (may be empty)
 #    OPTARG="${OPTARG#=}"      # if long option argument, remove assigning `=`
   fi
-  echo $OPTION
   case "$OPTION" in
     h | help)
       echo "-v | --verbose - to verbose print"
       echo "-n | --names - to set names (they mast be separated with ', ')"
       echo "-d | --departments - to set departments (they mast be separated with ', ')"
       echo "-p | --path - to set working directory to set departments file system"
+      return 1
       ;;
     v | verbose)
       VERBOSE=true
