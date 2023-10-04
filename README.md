@@ -27,20 +27,39 @@ sender делает рассылку
 # Quick start
 It is obviosly not that quick, but not so hard.
 
-#start with update
+#start with update <br>
 sudo apt update
+
+
 
 #for start you need to install python3
 sudo apt install python3
 
-#then install pip 
-sudo apt install python3-pip python3-dev
-#or
-wget https://bootstrap.pypa.io/get-pip.py | sudo python3
 
-#then install library for python3
-pip install russian_names
 
-#then you need to made .sh files executable
-chmod +x ./creator.sh
+#then install pip  <br>
+sudo apt install python3-pip python3-dev <br>
+#or <br>
+wget https://bootstrap.pypa.io/get-pip.py | sudo python3 <br>
+
+
+
+#then install library for python3 <br>
+pip3 install russian_names
+
+
+
+#then you need to made .sh files executable<br>
+chmod +x ./creator.sh<br>
 chmod +x ./sender.sh
+
+
+
+#напишите боту и найдите id чата (я использовал бота https://t.me/RUTtestbot)<br>
+#перейдите по ссылке (заменив <TOKEN> на токен бота) и найдите ID чата<br>
+https://api.telegram.org/bot<TOKEN>/getUpdates<br>
+#и в файле sender.sh поменяйте мапу DEPARTMENTS_MAP (там же добавьте необходимого юзера\юзеров)
+
+
+после этого можно запустить ./creator.sh (но рекомендую сначла создать папку tmp что бы не засорять текущую дерикторию тогда нужно будет запускать ./creator.sh -p ./tmp)<br> после этого создаться дерево файлов типа /департамент/рандомное_имя.txt<br> после этого можно запустить ./sender.sh он попытается написать в ТГ от имени бота <br> так же при желании можно изменять имена и департаменты соответствующими ключами.
+
