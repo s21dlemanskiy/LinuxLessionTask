@@ -1,5 +1,4 @@
-function get_certificate {
-  #This is an example of using a function
+function get_certificate() {
   if [ -n "$1" ];
   then
     echo ""

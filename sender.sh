@@ -8,12 +8,12 @@ tmp_file_name="tmp_file.tar"
 
 
 function get_departments_map_data() {
-  echo "DN:$1" >&2
+#  echo "DN:$1" >&2
   echo $(python3 -c "map=$DEPARTMENTS_MAP;result = map.get(\"$1\", {}).get(\"$2\", '');print(result)")
 }
-curl -X POST -v -F "chat_id=536160029" -H "Content-Type:multipart/form-data" -F document=@"/mnt/c/Users/koly36/Desktop/tmp/tmp_file.tar" "https://api.telegram.org/bot5662594280:AAGhEFWlCW5qClFAVCp5Q4lJ3E-VjEFaspM/sendDocument"
+#curl -X POST -v -F "chat_id=536160029" -H "Content-Type:multipart/form-data" -F document=@"/mnt/c/Users/koly36/Desktop/tmp/tmp_file.tar" "https://api.telegram.org/bot5662594280:AAGhEFWlCW5qClFAVCp5Q4lJ3E-VjEFaspM/sendDocument"
 
-echo $(get_departments_map_data "Департамент статистики" "chat_id")
+#echo $(get_departments_map_data "Департамент статистики" "chat_id")
 
 while getopts 'ndp:hv-:' OPTION; do
   if [ "$OPTION" = "-" ]; then   # long option: reformulate OPTION and OPTARG
