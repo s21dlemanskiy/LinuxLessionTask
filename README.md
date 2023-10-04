@@ -34,6 +34,8 @@ It is obviosly not that quick, but not so hard.
 #start with update <br>
 sudo apt update
 
+sudo apt install xlsx2csv <br>
+sudo apt install csv2xlsx
 
 
 #for start you need to install python3
