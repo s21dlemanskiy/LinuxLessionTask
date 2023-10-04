@@ -22,3 +22,25 @@ creator генерит необходимую файловую систему <b
 
 sender делает рассылку
 в теории он и есть основная задача задания
+
+
+# Quick start
+It is obviosly not that quick, but not so hard.
+
+#start with update
+sudo apt update
+
+#for start you need to install python3
+sudo apt install python3
+
+#then install pip 
+sudo apt install python3-pip python3-dev
+#or
+wget https://bootstrap.pypa.io/get-pip.py | sudo python3
+
+#then install library for python3
+pip install russian_names
+
+#then you need to made .sh files executable
+chmod +x ./creator.sh
+chmod +x ./sender.sh
