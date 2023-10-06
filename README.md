@@ -12,13 +12,26 @@ TASK:<br>
 
 для запуска в линукс нужно установить пакты из requrements.txt
 
+excelExtractor перобразовавает XLSX файл в csv а после агрегирует по одному из стобцов значения другого столбца <br>
+-k | --keyColumn - to specify num of column that is key in map (group by this column) <br>
+-v | --valueColumn - to specify num of column that is value in map (that will bee group in list of values for each key) <br>
+-s | --spliter - to set spliter for values (default ',') <br>
+-e | --entitySpliter - to set spliter for entity (pair of key and value) (default ',') <br>
+при этом значения у одного ключа могут повторться, тогда на выходе у одного ключа бдет несколько значений. При этом стоит отметить что параметры -k и -v соответсвуют excel-евской идеии и начинаются с 1, а не с 0 <br>
+Пример использования:<br>
+ ./excelExtractor.sh  -k 1 -v 2 -s "|" -e "^" ./Departments_data1.xlsx
+ получим что то типа {'Аппарат Банка России':['Федор Алексеевич Расходов'|'Лиза Леонидовна Ходжиязова'|'Виолетта Максимовна Турлина'|'Геннадий Аркадиевич Намазаоиев'|'Раиса Алексеевна Хузрева']^'Служба анализа рисков':['Кира Сергеевна Хотенцева'|'Владислав Юрьевич Альжигидов'|'Анатолий Денисович Олегин'|'Георгий Георгиевич Сибукаев'|'Софья Егоровна Гюшнибаева']^'Департамент статистики':['Константин Вадимович Николашев'|'Вячеслав Николаевич Чуршунов']}
+
 creator генерит необходимую файловую систему <br>
 -h | --help - to see this list <br>
 -v | --verbose - to verbose print <br>
 -n | --names - to set names (they mast be separated with ', ') <br>
 -d | --departments - to set departments (they mast be separated with ', ') <br>
 -p | --path - to set working directory to set departments file system <br>
-по дефолту генерит рандомные имена и берет департаменты из списка (откуда список? хз. Егор откуда то достал, а я позаимствовал)
+-m | --map - you can set map department-names and from this map will be created file tree<br>
+по дефолту генерит рандомные имена и берет департаменты из списка (откуда список? хз. Егор откуда то достал, а я позаимствовал) но можно специфицировать мапу департамент-сотрудники что бы сгенерировалось из мапы<br>
+Пример использования:<br>
+./creator.sh -v -m "{'key1':['val1', 'val2', 'val3'], 'key2':['val4']}" -p ./tmp
 
 sender делает рассылку (в теории он и есть основная задача задания)
 -h | --help - to see this list <br>
