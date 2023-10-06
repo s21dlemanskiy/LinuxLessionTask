@@ -13,6 +13,14 @@ function get_certificate() {
 }
 
 
+function printMap() {
+  for i in "${!departmentsPeopleMap[@]}"
+  do
+    echo "$i=${departmentsPeopleMap[$i]}"
+  done
+}
+
+
 function parceMapFromString() {
   # input like {"key1":["val1", "val2"], key2:[val3, val4]}
   # we extact it like line1 = "key1" line2=["val1", "val2"], key2 line3=[val3, val4]
@@ -227,6 +235,7 @@ while getopts 'hvm:n:d:p:-:' OPTION; do
       echo "-n | --names - to set names (they mast be separated with ', ')"
       echo "-d | --departments - to set departments (they mast be separated with ', ')"
       echo "-p | --path - to set working directory to set departments file system"
+      echo "-m | --map - you can set map department-names and from this map will be created file tree"
       exit 1
       ;;
     v | verbose)
@@ -243,18 +252,19 @@ while getopts 'hvm:n:d:p:-:' OPTION; do
       ;;
     p | path)
       WORKING_DIRECTORY=$(realpath $OPTARG)
+      echo "use dir provided working directory"
       ;;
     m | map)
       stringMapdepartmentsPeople="${OPTARG}"
-#      shift "$(($OPTIND -1))"
+      echo "use provided map"
       ;;
     *)
-      echo "script usage: $(basename \$0) [-h] [-v] [-n somevalue] [-d somevalue] working_directory(optional)" >&2
+      echo "script usage: $(basename \$0) [-h] [-v] [-n listOfNames] [-d listOfDepartments] [-m someMapDepartmentsNames] [-p working_directory]" >&2
       exit 1
       ;;
   esac
-#  shift "$(($OPTIND -1))"
 done
+shift "$(($OPTIND -1))"
 
 #echo "'${stringMapdepartmentsPeople}'"
 #echo "'${WORKING_DIRECTORY}'"
@@ -275,8 +285,6 @@ then
 else
   createMapWithRandom
 fi
-
-
 
 
 for department_name in "${!departmentsPeopleMap[@]}"
