@@ -1,0 +1,2 @@
+data=$(xlsx2csv $1)
+python3 -c"data='''$data''';index=0;data=list(map(lambda x: list(x.split(',')), data.split('\n')));import xlsxwriter;workbook = xlsxwriter.Workbook('$1');worksheet = workbook.add_worksheet();[(worksheet.write(f'{chr(65)}{index}', data[0]), worksheet.write(f'{chr(65+1)}{index}', data[1]), worksheet.write(f'{chr(65+2)}{index}', data[2]), worksheet.write(f'{chr(65+3)}{index}', data[3]), worksheet.write(f'{chr(65+4)}{index}', f'{data[2][0]}.{data[3][0]}.') , index++) for i in data];workbook.close()"
