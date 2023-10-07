@@ -31,7 +31,8 @@ creator генерит необходимую файловую систему <b
 -m | --map - you can set map department-names and from this map will be created file tree<br>
 по дефолту генерит рандомные имена и берет департаменты из списка (откуда список? хз. Егор откуда то достал, а я позаимствовал) но можно специфицировать мапу департамент-сотрудники что бы сгенерировалось из мапы<br>
 Пример использования:<br>
-./creator.sh -v -m "{'key1':['val1', 'val2', 'val3'], 'key2':['val4']}" -p ./tmp
+./creator.sh -v -m "{'key1':['val1', 'val2', 'val3'], 'key2':['val4']}" -p ./tmp<br>
+Так же стоит отметить что именно он отсекает лиц мужкого пола, если мы хотим что бы раотало для всех нужно поменять параметр use_only_femail в начале файла.
 
 
 excelExtractorBoss
@@ -99,12 +100,12 @@ https://api.telegram.org/bot<TOKEN>/getUpdates<br>
 
 
 Дальше можно запустить ./creator.sh (но рекомендую сначла создать папку tmp что бы не засорять текущую дерикторию тогда нужно будет запускать ./creator.sh -p ./tmp). Так же отмечу что можно его запустить без дополнительных параметров тогда он создаст рандомные имена и рандомно их разбрасает по департаментам, по если мы все таки хотим подгрузить данные из XLSX то это можно сделать так:<br>
-./excelExtractor.sh ./Departments_data1.xlsx | ./creator.sh -v -m "$1" -p ./tmp <br>
+./creator.sh -v -m "$(./excelExtractor.sh ./Departments_data1.xlsx)" -p ./tmp <br>
 После этого создаться дерево файлов типа /департамент/имя_сотрудника.txt<br>
 Причем в фалы запишется "data-name-department", что бы изменить наполнение файла можно потрогать функцию get_certificate() в creator.sh и например достовать данные по имени или департаменту, ходить куда-нибудь курлом(curl) ну и тд.<br>
 Если данные о начальниках департаментов лежат в XLSX файле(например Departments_boss.xlsx), то можно использовать ./excelExtractorBoss.sh:<br>
 ./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx <br>
 После этого можно запустить ./sender.sh он попытается написать в ТГ от имени бота <br>
-./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx | ./sender.sh -d "$(ls ./tmp)" -m "$1" -p ./tmp
+./sender.sh -m "$(./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx)" -d "$(echo "$(ls ./tmp)" | tr $'\n' ",")" -p ./tmp
 
  
