@@ -1,22 +1,32 @@
+declare -A departmentsPeopleMap
+
+VERBOSE=false
+REGENERATE_CERTIFICATE=false
+LASTNAME_INDEX=1
+use_only_femail=true
+
+
+
+
 function get_certificate() {
   if [ -n "$1" ];
   then
-    echo ""
+    department=$1
     #there can be department
   fi
   if [ -n "$2" ];
   then
-    echo ""
+    name=$2
     #there can be name
   fi
-  echo "date"
+  echo "date-$name-$department"
 }
 
 
 function printMap() {
   for i in "${!departmentsPeopleMap[@]}"
   do
-    echo "$i=${departmentsPeopleMap[$i]}"
+    echo "$i=${departmentsPeopleMap[$i]}"  1>&2
   done
 }
 
@@ -33,7 +43,7 @@ function parceMapFromString() {
   entries=( ${stringMap} )
   for line in "${entries[@]}" ;
   do
-      echo "'$line'"
+#      echo "'$line'"  1>&2
       if [[ "$line" == *"{"*  ]];
       then
         key="${line}"
@@ -84,7 +94,7 @@ function parceMapFromString() {
         then
             if [ $VERBOSE = true ];
             then
-              echo "Map creation key:$key , value:$value"
+              echo "Map creation key:$key , value:$value"  1>&2
             fi
             departmentsPeopleMap[$key]="$value"
         fi
@@ -116,7 +126,7 @@ function createMapWithRandom() {
       names=( $names_str )
       for key in "${!names[@]}"
       do
-#        echo "'${names[$key]}'"
+#        echo "'${names[$key]}'"  1>&2
         names[$key]=${names[$key]##" "}
         names[$key]=${names[$key]%%" "}
         names[$key]=${names[$key]#*"'"}
@@ -125,21 +135,21 @@ function createMapWithRandom() {
         names[$key]=${names[$key]%"\""*}
         if [ $VERBOSE = true ];
         then
-          echo "extracted to names array : ${names[$key]}"
+          echo "extracted to names array : ${names[$key]}"  1>&2
         fi
       done
       if [ $shuf_names = true ] ;
       then
         for key in "${!names[@]}"
         do
-#          echo "'${names[$key]}'"
+#          echo "'${names[$key]}'"  1>&2
           names[$key]=${names[$key]//" "/"__SPACE__"}
         done
         IFS=$'\n'
         names=( $(shuf -e "${names[@]}") )
         for key in "${!names[@]}"
         do
-#          echo "'${names[$key]}'"
+#          echo "'${names[$key]}'"  1>&2
           names[$key]="${names[$key]//"__SPACE__"/" "}"
         done
       fi
@@ -177,7 +187,7 @@ EOF1
         departments[$key]=${departments[$key]%%"\""}
         if [ $VERBOSE = true ];
         then
-          echo "extracted to departments array: ${departments[$key]}"
+          echo "extracted to departments array: ${departments[$key]}"  1>&2
         fi
       done
 
@@ -202,26 +212,23 @@ EOF1
         if [[ -v 'departmentsPeopleMap[$department_name]' ]] ;
         then
           departmentsPeopleMap[$department_name]="${departmentsPeopleMap[$department_name]};${names[names_key]}"
-#          echo "${departmentsPeopleMap[$department_name]}"
+#          echo "${departmentsPeopleMap[$department_name]}"  1>&2
         else
           departmentsPeopleMap[$department_name]="${names[names_key]}"
-#          echo "111${department_name};${departmentsPeopleMap[$department_name]}222"
+#          echo "111${department_name};${departmentsPeopleMap[$department_name]}222"  1>&2
         fi
       done
       if [ $VERBOSE = true ];
       then
         for key in "${!departmentsPeopleMap[@]}"
         do
-          echo "Map creation key:${key} ---- value:${departmentsPeopleMap[$key]}"
+          echo "Map creation key:${key} ---- value:${departmentsPeopleMap[$key]}"  1>&2
         done
       fi
 
 }
 
-declare -A departmentsPeopleMap
 
-VERBOSE=false
-REGENERATE_CERTIFICATE=false
 
 while getopts 'hvm:n:d:p:-:' OPTION; do
   if [ "$OPTION" = "-" ]; then   # long option: reformulate OPTION and OPTARG
@@ -243,20 +250,20 @@ while getopts 'hvm:n:d:p:-:' OPTION; do
 #      shift "$(($OPTIND -1))"
       ;;
     n | names)
-      echo "use provided names"
+      echo "use provided names"  1>&2
       names_str="$OPTARG"
       ;;
     d | departments)
-      echo "use provided departments"
+      echo "use provided departments"  1>&2
       departments_str="$OPTARG"
       ;;
     p | path)
       WORKING_DIRECTORY=$(realpath $OPTARG)
-      echo "use dir provided working directory"
+      echo "use dir provided working directory"  1>&2
       ;;
     m | map)
       stringMapdepartmentsPeople="${OPTARG}"
-      echo "use provided map"
+      echo "use provided map $stringMapdepartmentsPeople"  1>&2
       ;;
     *)
       echo "script usage: $(basename \$0) [-h] [-v] [-n listOfNames] [-d listOfDepartments] [-m someMapDepartmentsNames] [-p working_directory]" >&2
@@ -275,7 +282,7 @@ fi
 
 if [ $VERBOSE = true ] ;
 then
-      echo "WORKING_DIRECTORY=$WORKING_DIRECTORY"
+      echo "WORKING_DIRECTORY=$WORKING_DIRECTORY"  1>&2
 fi
 
 
@@ -295,13 +302,17 @@ do
     mkdir "$dir_path"
     if [ $VERBOSE = true ];
     then
-        echo "created $dir_path directory"
+        echo "created $dir_path directory"  1>&2
     fi
   fi
   IFS=";"
   names_list=( ${departmentsPeopleMap[$department_name]} )
   for name in "${names_list[@]}"
   do
+    IFS=" "
+    fio_list=( $name )
+    if [[ $use_only_femail == false || ("${#fio_list[@]}" == "3" && "${fio_list[$LASTNAME_INDEX]}" =~ ^.*вна$) ]]
+    then
       #mast be change to pdf on production
       file_path="$dir_path/${name}.txt"
       if [ ! -f file_path ] ;
@@ -309,18 +320,19 @@ do
         touch "$file_path"
         if [ $VERBOSE = true ];
         then
-            echo "created $file_path file"
+            echo "created $file_path file"  1>&2
         fi
         get_certificate "$department_name" "${name}" 1> "$file_path" 2>&2
       else
         if [ $VERBOSE = true ];
         then
-            echo "rewrote $file_path file"
+            echo "rewrote $file_path file"  1>&2
         fi
         if [ $REGENERATE_CERTIFICATE = true ]
         then
           get_certificate "$department_name ""${name}" 1> "$file_path" 2>&2
         fi
       fi
+    fi
   done
 done

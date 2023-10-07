@@ -6,7 +6,6 @@ spliterForValues=","
 spliterForEntity=","
 declare -A dataMap
 while getopts 'hk:v:s:e:-:' OPTION; do
-  echo "$OPTION, $OPTARG"
   if [ "$OPTION" = "-" ]; then   # long option: reformulate OPTION and OPTARG
     OPTION="${OPTARG%%=*}"       # extract long option name
    OPTARG="${OPTARG#OPTION}"   # extract long option argument (may be empty)
@@ -22,19 +21,22 @@ while getopts 'hk:v:s:e:-:' OPTION; do
       ;;
     k | keyColumn)
       ((aggrBy = OPTARG - 1))
-    echo "use $aggrBy"
+      echo "use aggrBy = $aggrBy"  1>&2
       ;;
     v | valueColumn)
       ((aggregated = OPTARG - 1))
+      echo "use aggregated = $aggregated"  1>&2
       ;;
     s | spliter)
       spliterForValues="${OPTARG}"
+      echo "use spliterForValues = $spliterForValues"  1>&2
       ;;
     e | entitySpliter)
       spliterForEntity="${OPTARG}"
+      echo "use spliterForEntity = $spliterForEntity"  1>&2
       ;;
     *)
-      echo "script usage: $(basename \$0) [-h] [-v] [-n somevalue] [-d somevalue] working_directory(optional)" >&2
+      echo "script usage: $(basename \$0) [-h] [-v valueColumnNumber] [-k keyColumnNumber] [-s vluesSpliter] [-e entitySpliter] " >&2
       exit 1
       ;;
   esac
@@ -47,14 +49,26 @@ for line in "${data[@]}"
 do
   IFS=$DELIMETR
   lineData=( $line )
-  aggrColumn=${lineData[$aggrBy]}
-  aggregatedColumn=${lineData[$aggregated]}
-  if [[ -v 'dataMap[$aggrColumn]' ]] ;
+  lenOfRow=${#lineData[@]}
+  if ! ((lenOfRow <= aggrBy || lenOfRow <= aggregated ));
   then
-    dataMap[$aggrColumn]="${dataMap[$aggrColumn]}${spliterForValues}'${aggregatedColumn}'"
+      aggrColumn=${lineData[$aggrBy]}
+      aggregatedColumn=${lineData[$aggregated]}
+      if [[ ! $aggrColumn == "" ]];
+      then
+        if [[ -v 'dataMap[$aggrColumn]' ]] ;
+        then
+          dataMap[$aggrColumn]="${dataMap[$aggrColumn]}${spliterForValues}'${aggregatedColumn}'"
+        else
+          dataMap[$aggrColumn]="'${aggregatedColumn}'"
+        fi
+      else
+        echo "varible aggrColumn is empty -> skiped" 1>&2
+      fi
   else
-    dataMap[$aggrColumn]="'${aggregatedColumn}'"
+    echo "len of row is $lenOfRow and it is less then aggrBy=$aggrBy or aggregated=$aggregated" 1>&2
   fi
+
 done
 for key in "${!dataMap[@]}"
 do
