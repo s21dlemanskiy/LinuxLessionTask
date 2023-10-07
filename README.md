@@ -10,9 +10,11 @@ TASK:<br>
 
 # How To Use
 
-для запуска в линукс нужно установить пакты из requrements.txt
+для запуска в линукс нужно установить пакты из requrements.txt <br>
 
-excelExtractor перобразовавает XLSX файл в csv а после агрегирует по одному из стобцов значения другого столбца <br>
+## скрипты и их задачи, а так же флаги:
+
+**excelExtractor** перобразовавает XLSX файл в csv а после агрегирует по одному из стобцов значения другого столбца <br>
 -k | --keyColumn - to specify num of column that is key in map (group by this column) <br>
 -v | --valueColumn - to specify num of column that is value in map (that will bee group in list of values for each key) <br>
 -s | --spliter - to set spliter for values (default ',') <br>
@@ -22,7 +24,7 @@ excelExtractor перобразовавает XLSX файл в csv а после
  ./excelExtractor.sh  -k 1 -v 2 -s "|" -e "^" ./Departments_data1.xlsx<br>
  получим что то типа {'Аппарат Банка России':['Федор Алексеевич Расходов'|'Лиза Леонидовна Ходжиязова'|'Виолетта Максимовна Турлина'|'Геннадий Аркадиевич Намазаоиев'|'Раиса Алексеевна Хузрева']^'Служба анализа рисков':['Кира Сергеевна Хотенцева'|'Владислав Юрьевич Альжигидов'|'Анатолий Денисович Олегин'|'Георгий Георгиевич Сибукаев'|'Софья Егоровна Гюшнибаева']^'Департамент статистики':['Константин Вадимович Николашев'|'Вячеслав Николаевич Чуршунов']}<br>
 
-creator генерит необходимую файловую систему <br>
+**creator** генерит необходимую файловую систему <br>
 -h | --help - to see this list <br>
 -v | --verbose - to verbose print <br>
 -n | --names - to set names (they mast be separated with ', ') <br>
@@ -35,7 +37,7 @@ creator генерит необходимую файловую систему <b
 Так же стоит отметить что именно он отсекает лиц мужкого пола, если мы хотим что бы раотало для всех нужно поменять параметр use_only_femail в начале файла.
 
 
-excelExtractorBoss <br>
+**excelExtractorBoss**  перобразовавает XLSX файл в csv а после достает необходимые колонки (более утилитарный чем первый) <br>
 -h | --help - to see this list <br>
 -d | --departmentCol - to specify num of department column that contains name of department (of what deo=partment is boss) <br>
 -c | --chatIdCol - to specify num of chat id column <br>
@@ -45,7 +47,7 @@ excelExtractorBoss <br>
 -e | --entitySpliter - to set spliter for entity (pair of key and value) (default ',') <br>
 
 
-sender делает рассылку (в теории он и есть основная задача задания) <br>
+**sender** делает рассылку (в теории он и есть основная задача задания) <br>
 -h | --help - to see this list <br>
 -v | --verbose - to verbose print <br>
 -d | --departments - to set departments (they mast be separated with ', ') <br>
@@ -348,3 +350,16 @@ https://api.telegram.org/bot<TOKEN>/getUpdates<br>
           </tr>
         </tbody>
     </table>
+
+
+# Additinal Info\Bags\Other
+будте осторожны с длинными именами флагов. Они не всегда правильно работают, тк все длинные имена требуют агрумента и например --verbose может выдать что то неожиданное. так что лучше использовать короткие ключи типа -v.
+
+
+заголоки в XLSX файлах все испортят (TODO: добавить ключ который позволяет скипать n первых строк)
+
+
+Я старался разделять вывод и инфармационные сообщения в отдельные потоки, но вспомнил я про это ближе к концу, так что могут вылезти артефакты
+
+
+разбор столбца ФИО на четыре, фамилия,  имя, отчество и инициалы написанно на питоне с использованием pandas, тк писать это на sh скриптах..... Душно. для него понадобится pip3 install pandas.
