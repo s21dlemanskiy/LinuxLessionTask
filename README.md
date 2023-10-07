@@ -33,6 +33,17 @@ creator генерит необходимую файловую систему <b
 Пример использования:<br>
 ./creator.sh -v -m "{'key1':['val1', 'val2', 'val3'], 'key2':['val4']}" -p ./tmp
 
+
+excelExtractorBoss
+-h | --help - to see this list <br>
+-d | --departmentCol - to specify num of department column that contains name of department (of what deo=partment is boss) <br>
+-c | --chatIdCol - to specify num of chat id column <br>
+-u | --userNameCol - to specify num of column with username (that will be owner of folder with certificates) <br>
+-p | --passwordCol - to specify num of column with password for user <br>
+-s | --spliter - to set spliter for values (default ',') <br>
+-e | --entitySpliter - to set spliter for entity (pair of key and value) (default ',') <br>
+
+
 sender делает рассылку (в теории он и есть основная задача задания)
 -h | --help - to see this list <br>
 -v | --verbose - to verbose print <br>
@@ -77,7 +88,7 @@ chmod +x ./sender.sh
 #напишите боту и найдите id чата (я использовал бота https://t.me/RUTtestbot)<br>
 #перейдите по ссылке (заменив <TOKEN> на токен бота) и найдите ID чата<br>
 https://api.telegram.org/bot<TOKEN>/getUpdates<br>
-#и в файле sender.sh поменяйте мапу DEPARTMENTS_MAP (там же добавьте необходимого юзера\юзеров)
+#и в файле sender.sh поменяйте мапу DEPARTMENTS_MAP (там же добавьте необходимого юзера\юзеров) (или использовать ./excelExtractorBoss.sh)
 
 
 убедитесь что у вас имеется нужный xlsx файл, Departments_data.xlsx в текщей дериктории и убедитесь что есть колонка с департаментами и колонка с именами сотрудников департамента
@@ -91,5 +102,9 @@ https://api.telegram.org/bot<TOKEN>/getUpdates<br>
 ./excelExtractor.sh ./Departments_data1.xlsx | ./creator.sh -v -m "$1" -p ./tmp <br>
 После этого создаться дерево файлов типа /департамент/имя_сотрудника.txt<br>
 Причем в фалы запишется "data-name-department", что бы изменить наполнение файла можно потрогать функцию get_certificate() в creator.sh и например достовать данные по имени или департаменту, ходить куда-нибудь курлом(curl) ну и тд.<br>
-после этого можно запустить ./sender.sh он попытается написать в ТГ от имени бота <br>
+Если данные о начальниках департаментов лежат в XLSX файле(например Departments_boss.xlsx), то можно использовать ./excelExtractorBoss.sh:<br>
+./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx <br>
+После этого можно запустить ./sender.sh он попытается написать в ТГ от имени бота <br>
+./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx | ./sender.sh -d "$(ls ./tmp)" -m "$1" -p ./tmp
 
+ 
