@@ -110,4 +110,241 @@ https://api.telegram.org/bot<TOKEN>/getUpdates<br>
 После этого можно запустить ./sender.sh он попытается написать в ТГ от имени бота <br>
 ./sender.sh -m "$(./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx)" -d "$(echo "$(ls ./tmp)" | tr $'\n' ",")" -p ./tmp
 
- 
+
+
+
+
+
+ tables example 
+ <table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+        <colgroup><col class="col0">
+        <col class="col1">
+        <col class="col2">
+        <col class="col3">
+        <col class="col4">
+        <col class="col5">
+        <col class="col6">
+        <col class="col7">
+        <col class="col8">
+        </colgroup><tbody>
+         <tr>
+          <th colspan="8">./Departments_data1.xlsx</th>
+        </tr>
+          <tr class="row0">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Федор Алексеевич Расходов</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row1">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Лиза Леонидовна Ходжиязова</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row2">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Виолетта Максимовна Турлина</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row3">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Геннадий Аркадиевич Намазаоиев</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row4">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Раиса Алексеевна Хузрева</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row5">
+            <td class="column0 style1 s">Департамент статистики</td>
+            <td class="column1 style1 s">Константин Вадимович Николашев</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row6">
+            <td class="column0 style1 s">Департамент статистики</td>
+            <td class="column1 style1 s">Вячеслав Николаевич Чуршунов</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row7">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Кира Сергеевна Хотенцева</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row8">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Владислав Юрьевич Альжигидов</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row9">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Анатолий Денисович Олегин</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row10">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Георгий Георгиевич Сибукаев</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row11">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Софья Егоровна Гюшнибаева</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+        </tbody>
+    </table>
+
+
+<table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+        <colgroup><col class="col0">
+        <col class="col1">
+        <col class="col2">
+        <col class="col3">
+        <col class="col4">
+        <col class="col5">
+        <col class="col6">
+        <col class="col7">
+        <col class="col8">
+        </colgroup><tbody>
+         <tr>
+          <th colspan="8">./Departments_boss.xlsx</th>
+        </tr>
+          <tr class="row0">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style2 n">536160029</td>
+            <td class="column2 style1 s">user1</td>
+            <td class="column3 style3 s">pass1</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row1">
+            <td class="column0 style1 s">Департамент статистики</td>
+            <td class="column1 style3 n">536160029</td>
+            <td class="column2 style1 s">user232</td>
+            <td class="column3 style3 s">pass2</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row2">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style4 n">536160029</td>
+            <td class="column2 style1 s">user3</td>
+            <td class="column3 style3 s">pass37</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row3">
+            <td class="column0">&nbsp;</td>
+            <td class="column1">&nbsp;</td>
+            <td class="column2">&nbsp;</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row4">
+            <td class="column0">&nbsp;</td>
+            <td class="column1">&nbsp;</td>
+            <td class="column2">&nbsp;</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row5">
+            <td class="column0">&nbsp;</td>
+            <td class="column1">&nbsp;</td>
+            <td class="column2">&nbsp;</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+        </tbody>
+    </table>
