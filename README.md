@@ -50,6 +50,7 @@ sender делает рассылку (в теории он и есть осно�
 -v | --verbose - to verbose print <br>
 -d | --departments - to set departments (they mast be separated with ', ') <br>
 -p | --path - to set working directory to set departments file system <br>
+-m | --departmentsBossMap - to set map like "{departmentname:{'chat_id':1222212, 'user_name':'username1', 'password':'hardPass'}}" <br>
 
 
 
@@ -83,6 +84,7 @@ pip3 install russian_names
 chmod +x ./excelExtractor.sh<br>
 chmod +x ./creator.sh<br>
 chmod +x ./sender.sh
+chmod +x ./excelExtractorBoss.sh
 
 
 
