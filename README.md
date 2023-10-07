@@ -363,3 +363,279 @@ https://api.telegram.org/bot<TOKEN>/getUpdates<br>
 
 
 разбор столбца ФИО на четыре, фамилия,  имя, отчество и инициалы написанно на питоне с использованием pandas, тк писать это на sh скриптах..... Душно. для него понадобится pip3 install pandas; pip3 install openpyxl.
+
+
+Пример использования:
+<table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+        <colgroup><col class="col0">
+        <col class="col1">
+        <col class="col2">
+        <col class="col3">
+        <col class="col4">
+        <col class="col5">
+        <col class="col6">
+        <col class="col7">
+        <col class="col8">
+        </colgroup><tbody>
+         <tr>
+          <th colspan="8">./Departments_data1.xlsx</th>
+        </tr>
+          <tr class="row0">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Федор Алексеевич Расходов</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row1">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Лиза Леонидовна Ходжиязова</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row2">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Виолетта Максимовна Турлина</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row3">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Геннадий Аркадиевич Намазаоиев</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row4">
+            <td class="column0 style1 s">Аппарат Банка России</td>
+            <td class="column1 style1 s">Раиса Алексеевна Хузрева</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row5">
+            <td class="column0 style1 s">Департамент статистики</td>
+            <td class="column1 style1 s">Константин Вадимович Николашев</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row6">
+            <td class="column0 style1 s">Департамент статистики</td>
+            <td class="column1 style1 s">Вячеслав Николаевич Чуршунов</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row7">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Кира Сергеевна Хотенцева</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row8">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Владислав Юрьевич Альжигидов</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row9">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Анатолий Денисович Олегин</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row10">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Георгий Георгиевич Сибукаев</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+          <tr class="row11">
+            <td class="column0 style1 s">Служба анализа рисков</td>
+            <td class="column1 style1 s">Софья Егоровна Гюшнибаева</td>
+            <td class="column2 style1 s">otherData</td>
+            <td class="column3">&nbsp;</td>
+            <td class="column4">&nbsp;</td>
+            <td class="column5">&nbsp;</td>
+            <td class="column6">&nbsp;</td>
+            <td class="column7">&nbsp;</td>
+            <td class="column8">&nbsp;</td>
+          </tr>
+        </tbody>
+    </table>
+
+python3 ./FIO.py -i 1 -p Departments_data1.xlsx <br>
+РЕзультат:
+<table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+        <colgroup><col class="col0">
+        <col class="col1">
+        <col class="col2">
+        <col class="col3">
+        <col class="col4">
+        <col class="col5">
+        <col class="col6">
+        </colgroup><tbody>
+         <tr>
+          <th colspan="8">./Departments_data1.xlsx</th>
+        </tr>
+          <tr class="row0">
+            <td class="column0 style0 inlineStr">Аппарат Банка России</td>
+            <td class="column1 style0 inlineStr">Федор Алексеевич Расходов</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Федор</td>
+            <td class="column4 style0 inlineStr">Алексеевич</td>
+            <td class="column5 style0 inlineStr">Расходов</td>
+            <td class="column6 style0 inlineStr">Расходов Ф.А.</td>
+          </tr>
+          <tr class="row1">
+            <td class="column0 style0 inlineStr">Аппарат Банка России</td>
+            <td class="column1 style0 inlineStr">Лиза Леонидовна Ходжиязова</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Лиза</td>
+            <td class="column4 style0 inlineStr">Леонидовна</td>
+            <td class="column5 style0 inlineStr">Ходжиязова</td>
+            <td class="column6 style0 inlineStr">Ходжиязова Л.Л.</td>
+          </tr>
+          <tr class="row2">
+            <td class="column0 style0 inlineStr">Аппарат Банка России</td>
+            <td class="column1 style0 inlineStr">Виолетта Максимовна Турлина</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Виолетта</td>
+            <td class="column4 style0 inlineStr">Максимовна</td>
+            <td class="column5 style0 inlineStr">Турлина</td>
+            <td class="column6 style0 inlineStr">Турлина В.М.</td>
+          </tr>
+          <tr class="row3">
+            <td class="column0 style0 inlineStr">Аппарат Банка России</td>
+            <td class="column1 style0 inlineStr">Геннадий Аркадиевич Намазаоиев</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Геннадий</td>
+            <td class="column4 style0 inlineStr">Аркадиевич</td>
+            <td class="column5 style0 inlineStr">Намазаоиев</td>
+            <td class="column6 style0 inlineStr">Намазаоиев Г.А.</td>
+          </tr>
+          <tr class="row4">
+            <td class="column0 style0 inlineStr">Аппарат Банка России</td>
+            <td class="column1 style0 inlineStr">Раиса Алексеевна Хузрева</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Раиса</td>
+            <td class="column4 style0 inlineStr">Алексеевна</td>
+            <td class="column5 style0 inlineStr">Хузрева</td>
+            <td class="column6 style0 inlineStr">Хузрева Р.А.</td>
+          </tr>
+          <tr class="row5">
+            <td class="column0 style0 inlineStr">Департамент статистики</td>
+            <td class="column1 style0 inlineStr">Константин Вадимович Николашев</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Константин</td>
+            <td class="column4 style0 inlineStr">Вадимович</td>
+            <td class="column5 style0 inlineStr">Николашев</td>
+            <td class="column6 style0 inlineStr">Николашев К.В.</td>
+          </tr>
+          <tr class="row6">
+            <td class="column0 style0 inlineStr">Департамент статистики</td>
+            <td class="column1 style0 inlineStr">Вячеслав Николаевич Чуршунов</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Вячеслав</td>
+            <td class="column4 style0 inlineStr">Николаевич</td>
+            <td class="column5 style0 inlineStr">Чуршунов</td>
+            <td class="column6 style0 inlineStr">Чуршунов В.Н.</td>
+          </tr>
+          <tr class="row7">
+            <td class="column0 style0 inlineStr">Служба анализа рисков</td>
+            <td class="column1 style0 inlineStr">Кира Сергеевна Хотенцева</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Кира</td>
+            <td class="column4 style0 inlineStr">Сергеевна</td>
+            <td class="column5 style0 inlineStr">Хотенцева</td>
+            <td class="column6 style0 inlineStr">Хотенцева К.С.</td>
+          </tr>
+          <tr class="row8">
+            <td class="column0 style0 inlineStr">Служба анализа рисков</td>
+            <td class="column1 style0 inlineStr">Владислав Юрьевич Альжигидов</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Владислав</td>
+            <td class="column4 style0 inlineStr">Юрьевич</td>
+            <td class="column5 style0 inlineStr">Альжигидов</td>
+            <td class="column6 style0 inlineStr">Альжигидов В.Ю.</td>
+          </tr>
+          <tr class="row9">
+            <td class="column0 style0 inlineStr">Служба анализа рисков</td>
+            <td class="column1 style0 inlineStr">Анатолий Денисович Олегин</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Анатолий</td>
+            <td class="column4 style0 inlineStr">Денисович</td>
+            <td class="column5 style0 inlineStr">Олегин</td>
+            <td class="column6 style0 inlineStr">Олегин А.Д.</td>
+          </tr>
+          <tr class="row10">
+            <td class="column0 style0 inlineStr">Служба анализа рисков</td>
+            <td class="column1 style0 inlineStr">Георгий Георгиевич Сибукаев</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Георгий</td>
+            <td class="column4 style0 inlineStr">Георгиевич</td>
+            <td class="column5 style0 inlineStr">Сибукаев</td>
+            <td class="column6 style0 inlineStr">Сибукаев Г.Г.</td>
+          </tr>
+          <tr class="row11">
+            <td class="column0 style0 inlineStr">Служба анализа рисков</td>
+            <td class="column1 style0 inlineStr">Софья Егоровна Гюшнибаева</td>
+            <td class="column2 style0 inlineStr">otherData</td>
+            <td class="column3 style0 inlineStr">Софья</td>
+            <td class="column4 style0 inlineStr">Егоровна</td>
+            <td class="column5 style0 inlineStr">Гюшнибаева</td>
+            <td class="column6 style0 inlineStr">Гюшнибаева С.Е.</td>
+          </tr>
+        </tbody>
+    </table>
