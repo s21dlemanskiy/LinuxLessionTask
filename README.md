@@ -35,7 +35,7 @@ creator генерит необходимую файловую систему <b
 Так же стоит отметить что именно он отсекает лиц мужкого пола, если мы хотим что бы раотало для всех нужно поменять параметр use_only_femail в начале файла.
 
 
-excelExtractorBoss
+excelExtractorBoss <br>
 -h | --help - to see this list <br>
 -d | --departmentCol - to specify num of department column that contains name of department (of what deo=partment is boss) <br>
 -c | --chatIdCol - to specify num of chat id column <br>
@@ -45,7 +45,7 @@ excelExtractorBoss
 -e | --entitySpliter - to set spliter for entity (pair of key and value) (default ',') <br>
 
 
-sender делает рассылку (в теории он и есть основная задача задания)
+sender делает рассылку (в теории он и есть основная задача задания) <br>
 -h | --help - to see this list <br>
 -v | --verbose - to verbose print <br>
 -d | --departments - to set departments (they mast be separated with ', ') <br>
