@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+
+
 declare -A departmentsPeopleMap
 
 VERBOSE=false

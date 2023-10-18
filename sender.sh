@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 
 TOKEN="5662594280:AAGhEFWlCW5qClFAVCp5Q4lJ3E-VjEFaspM"
 

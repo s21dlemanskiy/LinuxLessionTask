@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 DELIMETR=";"
 LINE_DELIMETR=$'\n'
 aggrBy=0
