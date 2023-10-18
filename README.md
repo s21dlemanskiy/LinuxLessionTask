@@ -70,6 +70,8 @@ sudo apt install xlsx2csv <br>
 #for start you need to install python3
 sudo apt install python3
 
+#install 7z
+sudo apt install p7zip-full
 
 
 #then install pip  <br>
