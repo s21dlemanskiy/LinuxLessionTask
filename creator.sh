@@ -8,7 +8,8 @@ REGENERATE_CERTIFICATE=false
 LASTNAME_INDEX=1
 use_only_femail=true
 
-
+CERTIFICATE_DIRECTORY="./certificates"
+USED_CERTIFICATE_DIRECTORY="./used_certificates"
 
 
 function get_certificate() {
@@ -22,7 +23,21 @@ function get_certificate() {
     name=$2
     #there can be name
   fi
-  echo "date-$name-$department"
+  if [ -n "$3" ];
+  then
+    path_to_result_file=$3
+    #there can be path to file, where will be certificate
+  fi
+  random_file=$(ls $CERTIFICATE_DIRECTORY | shuf -n 1)
+  random_file_path="$CERTIFICATE_DIRECTORY/$random_file"
+  if [ -n "$random_file" ] && [ -e "$random_file_path" ]; then
+    echo "certificate:$random_file" >&2
+    cp "$random_file_path" "$path_to_result_file"
+    cp "$random_file_path" "$USED_CERTIFICATE_DIRECTORY/$(basename $random_file_path)"
+    rm "$random_file_path"
+  else
+    echo "CERTIFICATE_DIRECTORY ($CERTIFICATE_DIRECTORY) is empty $name from $departments wouldnt have certificate" >&2
+  fi
 }
 
 
@@ -233,7 +248,7 @@ EOF1
 
 
 
-while getopts 'hvm:n:d:p:-:' OPTION; do
+while getopts 'hvm:n:d:p:c:u:-:' OPTION; do
   if [ "$OPTION" = "-" ]; then   # long option: reformulate OPTION and OPTARG
     OPTION="${OPTARG%%=*}"       # extract long option name
    OPTARG="${OPTARG#OPTION}"   # extract long option argument (may be empty)
@@ -268,8 +283,16 @@ while getopts 'hvm:n:d:p:-:' OPTION; do
       stringMapdepartmentsPeople="${OPTARG}"
       echo "use provided map $stringMapdepartmentsPeople"  1>&2
       ;;
+    c | certificates)
+      CERTIFICATE_DIRECTORY=$(realpath $OPTARG)
+      echo "use provided certificate directory $CERTIFICATE_DIRECTORY"  1>&2
+      ;;
+    u | used_certificates)
+      USED_CERTIFICATE_DIRECTORY=$(realpath $OPTARG)
+      echo "use provided used certificate directory $USED_CERTIFICATE_DIRECTORY"  1>&2
+      ;;
     *)
-      echo "script usage: $(basename \$0) [-h] [-v] [-n listOfNames] [-d listOfDepartments] [-m someMapDepartmentsNames] [-p working_directory]" >&2
+      echo "script usage: $(basename \$0) [-h] [-v] [-n listOfNames] [-d listOfDepartments] [-m someMapDepartmentsNames] [-p working_directory] [-c certificates directory] [-u used certificates directory]" >&2
       exit 1
       ;;
   esac
@@ -317,7 +340,7 @@ do
     if [[ $use_only_femail == false || ("${#fio_list[@]}" == "3" && "${fio_list[$LASTNAME_INDEX]}" =~ ^.*вна$) ]]
     then
       #mast be change to pdf on production
-      file_path="$dir_path/${name}.txt"
+      file_path="$dir_path/${name}.pdf"
       if [ ! -f file_path ] ;
       then
         touch "$file_path"
@@ -325,7 +348,7 @@ do
         then
             echo "created $file_path file"  1>&2
         fi
-        get_certificate "$department_name" "${name}" 1> "$file_path" 2>&2
+        get_certificate "$department_name" "${name}" "$file_path" 2>&2
       else
         if [ $VERBOSE = true ];
         then
@@ -333,7 +356,7 @@ do
         fi
         if [ $REGENERATE_CERTIFICATE = true ]
         then
-          get_certificate "$department_name ""${name}" 1> "$file_path" 2>&2
+          get_certificate "$department_name" "${name}" "$file_path" 2>&2
         fi
       fi
     fi

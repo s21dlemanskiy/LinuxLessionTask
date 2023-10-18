@@ -3,6 +3,7 @@ sudo apt install curl
 sudo apt install python3
 sudo apt install python3-pip python3-dev
 pip3 install russian_names
+sudo apt install p7zip-full
 sudo apt install xlsx2csv
 OR
 cd /tmp | curl --request GET "https://raw.githubusercontent.com/dilshod/xlsx2csv/master/xlsx2csv.py" > ./xlsx2csv | sudo cp ./xlsx2csv /usr/bin/xlsx2csv

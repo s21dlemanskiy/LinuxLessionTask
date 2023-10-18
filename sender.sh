@@ -6,7 +6,7 @@ TOKEN="5662594280:AAGhEFWlCW5qClFAVCp5Q4lJ3E-VjEFaspM"
 VERBOSE=false
 
 DEPARTMENTS_MAP="{'Департамент статистики':{'chat_id':536160029, 'user_name':'user', 'password':'pass'}}"
-tmp_file_name="tmp_file.tar"
+tmp_file_name="tmp_file.7z"
 
 
 function generateDepartmentsIfNeeded(){
@@ -109,7 +109,12 @@ do
     if [ -d "$dir_path" ];
     then
       tmp_file_path="$WORKING_DIRECTORY/$tmp_file_name"
-      tar -cvf "$tmp_file_path" "$dir_path"
+      zip "$tmp_file_path" -r "$dir_path"
+      #tar -cvf "$tmp_file_path" "$dir_path"
+      export LC_ALL=en_US.UTF-8
+      export LC_CTYPE=UTF-8
+      export LANG=en_US.UTF-8
+      7z a "$tmp_file_path" "$dir_path"
       echo $tmp_file_path  1>&2
       if [ $VERBOSE = true ] ;
       then
