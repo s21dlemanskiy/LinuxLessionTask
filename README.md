@@ -65,35 +65,35 @@ TASK:<br>
 It is obviosly not that quick, but not so hard.
 
 #start with update <br>
-sudo apt update
-
-sudo apt install xlsx2csv <br>
+> sudo apt update
+#install xlsx2csv
+> sudo apt install xlsx2csv
 
 
 #for start you need to install python3
-sudo apt install python3
+> sudo apt install python3
 
 #install 7z
-sudo apt install p7zip-full
+> sudo apt install p7zip-full
 
 
 #then install pip  <br>
-sudo apt install python3-pip python3-dev <br>
+> sudo apt install python3-pip python3-dev
 #or <br>
-wget https://bootstrap.pypa.io/get-pip.py | sudo python3 get-pip.py <br>
+> wget https://bootstrap.pypa.io/get-pip.py | sudo python3 get-pip.py 
 
 
 
 #then install library for python3 <br>
-pip3 install russian_names
+> pip3 install russian_names
 
 
 
 #then you need to made .sh files executable<br>
-chmod +x ./excelExtractor.sh<br>
-chmod +x ./creator.sh<br>
-chmod +x ./sender.sh
-chmod +x ./excelExtractorBoss.sh
+> chmod +x ./excelExtractor.sh
+> chmod +x ./creator.sh
+> chmod +x ./sender.sh
+> chmod +x ./excelExtractorBoss.sh
 
 
 
@@ -107,17 +107,17 @@ https://api.telegram.org/bot<TOKEN>/getUpdates<br>
 
 
 проверьте что мапа формируется правильно (у меня первая и вторая колонки это департаменты и имена соответсятвенно (колонка A:A и B:B))<br>
-./excelExtractor.sh  -k 1 -v 2 ./Departments_data1.xlsx
+> ./excelExtractor.sh  -k 1 -v 2 ./Departments_data1.xlsx
 
 
 Дальше можно запустить ./creator.sh (но рекомендую сначла создать папку tmp что бы не засорять текущую дерикторию тогда нужно будет запускать ./creator.sh -p ./tmp). Так же отмечу что можно его запустить без дополнительных параметров тогда он создаст рандомные имена и рандомно их разбрасает по департаментам, по если мы все таки хотим подгрузить данные из XLSX то это можно сделать так:<br>
-./creator.sh -v -m "$(./excelExtractor.sh ./Departments_data1.xlsx)" -p ./tmp -c ./certificates -u ./used_certificates <br>
+> ./creator.sh -v -m "$(./excelExtractor.sh ./Departments_data1.xlsx)" -p ./tmp -c ./certificates -u ./used_certificates
 После этого создаться дерево файлов типа /департамент/имя_сотрудника.txt<br>
 Причем в фалы запишется случайный сертификат из ./certificates и каждый записанный сертификат удаляется из этой папки и переносится в ./used_certificates<br>
 Если данные о начальниках департаментов лежат в XLSX файле(например Departments_boss.xlsx), то можно использовать ./excelExtractorBoss.sh:<br>
-./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx <br>
+> ./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx 
 После этого можно запустить ./sender.sh он попытается написать в ТГ от имени бота <br>
-./sender.sh -m "$(./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx)" -d "$(echo "$(ls ./tmp)" | tr $'\n' ",")" -p ./tmp
+> ./sender.sh -m "$(./excelExtractorBoss.sh -d 1 -c 2 -u 3 -p 4 ./Departments_boss.xlsx)" -d "$(echo "$(ls ./tmp)" | tr $'\n' ",")" -p ./tmp
 
 
 
