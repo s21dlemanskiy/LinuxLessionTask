@@ -73,8 +73,8 @@ It is obviosly not that quick, but not so hard.
 #for start you need to install python3
 > sudo apt install python3
 
-#install 7z
-> sudo apt install p7zip-full
+#install zip
+> sudo apt install zip
 
 
 #then install pip  <br>
